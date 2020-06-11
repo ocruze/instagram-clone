@@ -4,10 +4,15 @@
 <div class="container">
     <div class="row">
         <div class="col-3 p-5">
-            <img src="https://encrypted-tbn0.gstatic.com/images?q=tbn%3AANd9GcTOS7KNcMLI-A9ab3kc9r83EQSpMJWjjTeNkAf1h9ebXIXlwpc6&usqp=CAU" class="rounded-circle" alt="profil picture">
+            <img src="/storage/{{ $user->profile->image }}" class="rounded-circle w-100" alt="profile picture">
         </div>
         <div class="col-9 p-5">
-            <div><h1>{{ $user->username }}</h1></div>
+            <div class="d-flex">
+                <div class="pr-4"><h2>{{ $user->username }}</h2></div>
+                @can('update', $user->profile)
+                    <div><a class="h3" href="/profile/{{ $user->id }}/edit">Edit Profile</a></div>
+                @endcan
+            </div>
 
             <div class="d-flex">
                 <div class="pr-4"><strong>{{ $user->posts->count() }}</strong> posts</div>
@@ -25,7 +30,9 @@
     <div class="row pt-5">
         @foreach ($user->posts as $post)
             <div class="col-4 pt-4">
-                <img class="w-100" src="/storage/{{ $post->image }}" alt="">
+                <a href="/p/{{ $post->id }}">
+                    <img class="w-100" src="/storage/{{ $post->image }}" alt="">
+                </a>
             </div>
         @endforeach
     </div>
