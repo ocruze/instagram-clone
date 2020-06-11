@@ -2,8 +2,9 @@
 
 namespace App\Http\Controllers;
 
-use Intervention\Image\Facades\Image;
+use App\Post;
 use Illuminate\Http\Request;
+use Intervention\Image\Facades\Image;
 
 class PostController extends Controller
 {
@@ -14,7 +15,7 @@ class PostController extends Controller
 
     public function create()
     {
-        return view('posts.create');
+        return view('post.create');
     }
 
     public function store()
@@ -35,5 +36,10 @@ class PostController extends Controller
         ]);
 
         return redirect('/profile/' . auth()->user()->id);
+    }
+
+    public function show(Post $post)
+    {
+        return view('post.show', compact('post'));
     }
 }
