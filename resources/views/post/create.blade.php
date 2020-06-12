@@ -18,16 +18,10 @@
                     <input id="caption"
                            name="caption"
                            type="text"
-                           class="form-control @error('caption') is-invalid @enderror"
+                           class="form-control"
                            value="{{ old('caption') }}"
                            autocomplete="caption" autofocus
                            placeholder="Type a caption here">
-
-                    @error('caption')
-                        <span class="invalid-feedback" role="alert">
-                            <strong>{{ $message }}</strong>
-                        </span>
-                    @enderror
                 </div>
 
                 <div class="row">

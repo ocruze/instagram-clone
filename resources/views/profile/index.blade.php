@@ -9,15 +9,18 @@
         <div class="col-9 p-5">
             <div class="d-flex">
                 <div class="pr-4"><h2>{{ $user->username }}</h2></div>
+
                 @can('update', $user->profile)
                     <div><a class="h3" href="/profile/{{ $user->id }}/edit">Edit Profile</a></div>
                 @endcan
+
+                <follow-button user-id="{{ $user->id }}" follows="{{ $follows }}"></follow-button>
             </div>
 
             <div class="d-flex">
                 <div class="pr-4"><strong>{{ $user->posts->count() }}</strong> posts</div>
-                <div class="pr-4"><strong>153</strong> followers</div>
-                <div class="pr-4"><strong>153</strong> following</div>
+                <div class="pr-4"><strong>{{ $user->profile->followers->count() }}</strong> followers</div>
+                <div class="pr-4"><strong>{{ $user->following->count() }}</strong> following</div>
             </div>
 
             <div class="pt-3 font-weight-bold">{{ $user->name }}</div>
