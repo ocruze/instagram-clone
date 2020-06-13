@@ -1,5 +1,6 @@
 <?php
 
+use App\Mail\WelcomeMail;
 use Illuminate\Support\Facades\Route;
 
 /*
@@ -11,11 +12,7 @@ use Illuminate\Support\Facades\Route;
 | routes are loaded by the RouteServiceProvider within a group which
 | contains the "web" middleware group. Now create something great!
 |
-*/
-
-Route::get('/', function () {
-    return view('welcome');
-});
+ */
 
 Auth::routes();
 
@@ -26,5 +23,6 @@ Route::patch('/profile/{user}', 'ProfileController@update')->name('profile.updat
 Route::get('/p/create', 'PostController@create')->name('post.create');
 Route::post('/p', 'PostController@store')->name('post.store');
 Route::get('/p/{post}', 'PostController@show')->name('post.show');
+Route::get('/', 'PostController@index')->name('post.index');
 
 Route::post('follow/{user}', 'FollowController@store')->name('follow.store');
